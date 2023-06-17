@@ -1,6 +1,8 @@
 import axios from "axios";
 import "./styles/_main.scss";
 import { useEffect, useState } from "react";
+import MovieTableData from "./components/MovieTableData";
+import Navbar from "./components/Navbar";
 
 type Movies = Movie[];
 type Movie = {
@@ -21,69 +23,48 @@ type Movie = {
 
 function App() {
   const [movies, setMovies] = useState<Movies | null>(null);
+  const [lastClickedRow, setLastClickedRow] = useState<string | null>(null);
   useEffect(() => {
     fetchData();
   }, []);
 
-  const fetchData = async () => {
-    const options = {
-      method: "GET",
-      url: "https://imdb-top-100-movies.p.rapidapi.com/",
-      headers: {
-        "X-RapidAPI-Key": "a8ae1df93cmsh2dcb6a71acf7786p1c6986jsne2f14121de95",
-        "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
-      },
-    };
-
+  const fetchData = async (): Promise<void> => {
     try {
-      const response = await axios.request(options);
-      console.log(response.data);
-      setMovies(response.data);
+      const response = await axios.get("/data.json");
+      const data: Movies = response.data;
+      setMovies(data);
     } catch (error) {
       console.error(error);
     }
   };
 
+  function handleTrClick(movieId: string) {
+    if (lastClickedRow === movieId) {
+      setLastClickedRow(null);
+    } else {
+      setLastClickedRow(movieId);
+    }
+  }
+
   return (
     <>
-      <nav className='nav'>
-        <div className='nav__wrapper container'>
-          <div className='nav__logo'>
-            <h2>
-              MovieD<span className='nav__logo-dot'>.</span>
-            </h2>
-          </div>
-          <div className='nav__searchbar'>
-            <input
-              className='nav__searchbar-input'
-              placeholder='Search something here...'
-              type='text'
-            />
-          </div>
-          <ul className='nav__links'>
-            <li>Categories</li>
-            <li>Top 100</li>
-          </ul>
-        </div>
-      </nav>
+      <Navbar />
       <main className='container'>
         <div className='table'>
-          {movies?.map((movie) => {
-            return (
-              <table>
-                <tr>
-                  <td>
-                    <img src={movie.image} alt={movie.title} />
-                  </td>
-                  <td>{movie.title}</td>
-                  <td>
-                    <h3>IMDb rating:</h3>
-                    <div className='circle'>{movie.rating}</div>
-                  </td>
-                </tr>
-              </table>
-            );
-          })}
+          <table>
+            <tbody>
+              {movies?.map((movie) => {
+                return (
+                  <MovieTableData
+                    key={movie.id}
+                    movie={movie}
+                    handleTrClick={handleTrClick}
+                    isClicked={lastClickedRow === movie.id}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </main>
     </>

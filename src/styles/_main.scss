@@ -18,6 +18,10 @@ body {
   padding: 0 2rem;
   height: 8vh;
   background-color: $nav-color;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 
   &__wrapper {
     height: 100%;
@@ -53,7 +57,7 @@ body {
   &__links {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
 
     li {
       font-size: 1.6rem;
@@ -76,19 +80,21 @@ main {
     padding: 3rem;
     border-collapse: collapse;
 
-    tr {
-      max-height: 8%;
+    tr.tablerow {
+      z-index: 100;
+      width: 100%;
       background-color: #3c4856;
       border-radius: 30px;
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
       padding: 0 2rem;
       margin-bottom: 1rem;
       cursor: pointer;
-
-      &:hover {
-        background-color: $nav-color;
-      }
+      max-height: 90px;
+      transition: max-height 0.3s ease;
+      overflow: hidden;
 
       td {
         text-align: center;
@@ -99,13 +105,14 @@ main {
         }
 
         &:nth-of-type(1) {
-          width: 15%;
+          width: 8%;
           padding: 1rem;
           border-right: 1px $main-color solid;
         }
         &:nth-of-type(2) {
-          width: 55%;
-          font-size: 2.5rem;
+          width: 62%;
+          flex-grow: 1;
+          font-size: 2rem;
           border-right: 1px $main-color solid;
           padding: 0 1rem;
         }
@@ -130,6 +137,58 @@ main {
             border-radius: 50%;
             font-size: 1.5rem;
             color: $nav-color;
+          }
+        }
+
+        &:nth-of-type(4) {
+          display: block;
+          font-size: 1.5rem;
+          margin: 1.5rem 0;
+          width: 30%;
+        }
+        &:nth-of-type(5) {
+          display: block;
+          font-size: 1.5rem;
+          width: 35%;
+        }
+        &:nth-of-type(6) {
+          display: block;
+          font-size: 1.5rem;
+          width: 35%;
+
+          span {
+            p {
+              display: inline-block;
+              margin-right: 0.3rem;
+            }
+          }
+        }
+        &:nth-of-type(7) {
+          display: block;
+          width: 70%;
+          text-align: center;
+          font-size: 1.4rem;
+          margin-bottom: 2rem;
+        }
+      }
+
+      &:hover {
+        background-color: rgba(60, 72, 86, 0.5);
+      }
+
+      &.active {
+        background-color: #1b2534;
+        max-height: 300px;
+        // transition: max-height 0.3s ease-in-out;
+
+        td {
+          span {
+            color: $secondary-color;
+            font-weight: bold;
+          }
+
+          &:nth-of-type(1) {
+            border: none;
           }
         }
       }
