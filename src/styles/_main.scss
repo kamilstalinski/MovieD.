@@ -1,0 +1,138 @@
+@import "./reset";
+@import "./variables";
+@import "./typography";
+
+body {
+  height: 100vh;
+  background-color: $main-color;
+  color: $font-color;
+  font-family: $nunito;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.nav {
+  padding: 0 2rem;
+  height: 8vh;
+  background-color: $nav-color;
+
+  &__wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  &__logo {
+    font-family: $anton;
+    font-size: 2.5rem;
+
+    &-dot {
+      color: $secondary-color;
+    }
+  }
+
+  &__searchbar {
+    width: 30%;
+    &-input {
+      width: 100%;
+      padding: 1.5rem 2.5rem;
+      font-size: 1.4rem;
+      border: none;
+      outline: none;
+      border-radius: 2rem;
+      background-color: rgba(60, 72, 86, 0.1);
+      color: $font-color;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    li {
+      font-size: 1.6rem;
+      list-style: none;
+      color: $secondary-color;
+    }
+  }
+}
+
+main {
+  padding: 2rem;
+  h1 {
+    text-align: center;
+    font-size: 4rem;
+  }
+
+  table {
+    width: 80%;
+    margin: 0 auto;
+    padding: 3rem;
+    border-collapse: collapse;
+
+    tr {
+      max-height: 8%;
+      background-color: #3c4856;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $nav-color;
+      }
+
+      td {
+        text-align: center;
+        display: block;
+        img {
+          width: 100%;
+          border-radius: 5px;
+        }
+
+        &:nth-of-type(1) {
+          width: 15%;
+          padding: 1rem;
+          border-right: 1px $main-color solid;
+        }
+        &:nth-of-type(2) {
+          width: 55%;
+          font-size: 2.5rem;
+          border-right: 1px $main-color solid;
+          padding: 0 1rem;
+        }
+        &:nth-of-type(3) {
+          width: 30%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+
+          h3 {
+            color: #f5c517;
+          }
+
+          .circle {
+            width: 50px;
+            height: 50px;
+            background-color: $secondary-color;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: $nav-color;
+          }
+        }
+      }
+    }
+  }
+}
