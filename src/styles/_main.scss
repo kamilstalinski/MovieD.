@@ -126,7 +126,7 @@ main {
       padding: 0 2rem;
       margin-bottom: 1rem;
       cursor: pointer;
-      max-height: 90px;
+      max-height: 118.5px;
       transition: max-height 0.3s ease;
       overflow: hidden;
 
@@ -184,18 +184,16 @@ main {
         &:nth-of-type(5),
         &:nth-of-type(6),
         &:nth-of-type(7) {
-          visibility: collapse;
+          opacity: 0;
         }
 
         &:nth-of-type(4) {
-          display: block;
           font-size: 1.5rem;
           margin: 1.5rem 0;
           width: 30%;
         }
         &:nth-of-type(5),
         &:nth-of-type(6) {
-          display: block;
           font-size: 1.5rem;
           width: 35%;
         }
@@ -207,7 +205,6 @@ main {
           }
         }
         &:nth-of-type(7) {
-          display: block;
           width: 70%;
           text-align: center;
           font-size: 1.4rem;
@@ -228,10 +225,18 @@ main {
           &:nth-of-type(5),
           &:nth-of-type(6),
           &:nth-of-type(7) {
-            visibility: visible;
+            opacity: 1;
           }
         }
       }
     }
+  }
+}
+
+.genre-movies {
+  h1 {
+    text-align: start;
+    margin-bottom: 2rem;
+    font-size: 3rem;
   }
 }

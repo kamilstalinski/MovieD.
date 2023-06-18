@@ -38,9 +38,9 @@ function Genre({ movies, lastClickedRow, handleTrClick }: GenreProps) {
   }, [id, movies]);
 
   return (
-    <>
-      <h1>{id}</h1>
+    <div className='genre-movies'>
       <main className='container'>
+        <h1 className=''>{id}</h1>
         <div className='table'>
           <table>
             <tbody>
@@ -58,7 +58,7 @@ function Genre({ movies, lastClickedRow, handleTrClick }: GenreProps) {
           </table>
         </div>
       </main>
-    </>
+    </div>
   );
 }
 

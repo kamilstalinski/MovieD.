@@ -14,15 +14,20 @@ type MovieProps = {
     writers: string[];
     year: number;
   };
-  handleTrClick: (movieId: string) => void;
+  handleTrClick: (
+    movieId: string,
+    url?: string,
+    event?: React.MouseEvent<Element>,
+  ) => void;
   isClicked: boolean;
 };
 
 function Movie({ movie, handleTrClick, isClicked }: MovieProps) {
+  const url = encodeURIComponent(movie.title.toLowerCase().replace(/\s/g, "-"));
   return (
     <>
       <tr
-        onClick={() => handleTrClick(movie.id)}
+        onClick={(e) => handleTrClick(movie.id, url, e)}
         className={`tablerow ${isClicked ? "active" : ""}`}>
         <td>
           <img src={movie.image} alt={movie.title} />
@@ -44,7 +49,7 @@ function Movie({ movie, handleTrClick, isClicked }: MovieProps) {
             {movie.genre.map((genre) => {
               return (
                 <p key={Math.random()} className='inline'>
-                  {genre + " "}
+                  {`${genre}`}
                 </p>
               );
             })}

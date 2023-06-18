@@ -2,7 +2,7 @@ import axios from "axios";
 import "./styles/_main.scss";
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
-// import Breadcrumbs from "./components/Breadcrumbs";
+import Breadcrumbs from "./components/Breadcrumbs";
 import Categories from "./pages/Categories";
 import { Route, Routes } from "react-router-dom";
 import Top100 from "./pages/Top100";
@@ -58,18 +58,25 @@ function App() {
   };
 
   //logic which is checking if table row is clicked
-  function handleTrClick(movieId: string) {
+  function handleTrClick(
+    movieId: string,
+    url?: string,
+    e?: React.MouseEvent<Element>,
+  ) {
     if (lastClickedRow === movieId) {
       setLastClickedRow(null);
     } else {
       setLastClickedRow(movieId);
     }
+
+    e?.preventDefault();
+    window.history.pushState(null, "", url);
   }
 
   return (
     <>
       <Navbar />
-      {/* <Breadcrumbs /> */}
+      <Breadcrumbs />
       <Routes>
         <Route path='/' element={<Categories categoryList={categoryList} />} />
         <Route
