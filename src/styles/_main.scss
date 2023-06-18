@@ -35,6 +35,8 @@ body {
   &__logo {
     font-family: $anton;
     font-size: 2.5rem;
+    text-decoration: none;
+    color: inherit;
 
     &-dot {
       color: $secondary-color;
@@ -55,22 +57,26 @@ body {
       color: $font-color;
     }
   }
+}
 
-  &__links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 
-    li {
-      font-size: 1.6rem;
-      list-style: none;
-      color: $secondary-color;
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-    }
+  a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    width: 20%;
+    font-size: 3rem;
+    color: $nav-color;
+    text-align: center;
+    padding: 2rem;
+    background-color: $secondary-color;
+    border-radius: 30px;
   }
 }
 
@@ -103,129 +109,135 @@ body {
 
 main {
   padding: 2rem;
+  display: flex;
   h1 {
     text-align: center;
     font-size: 4rem;
   }
 
   table {
-    width: 80%;
-    margin: 0 auto;
+    width: 60%;
     padding: 3rem;
     border-collapse: collapse;
-
-    tr.tablerow {
-      z-index: 100;
+    a {
+      display: block;
       width: 100%;
-      background-color: #3c4856;
-      border-radius: 30px;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 0 2rem;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      max-height: 118.5px;
-      transition: max-height 0.3s ease;
-      overflow: hidden;
+      color: inherit;
+      text-decoration: none;
+    }
+    tr {
+      td.tablerow {
+        z-index: 100;
+        width: 100%;
+        background-color: #3c4856;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 2rem;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: max-height 0.3s ease;
+        overflow: hidden;
 
-      td {
-        text-align: center;
-        display: block;
+        td {
+          text-align: center;
+          display: block;
 
-        img {
-          width: 100%;
-          border-radius: 5px;
-        }
-
-        span {
-          color: $secondary-color;
-          font-weight: bold;
-        }
-
-        &:nth-of-type(1) {
-          width: 8%;
-          padding: 1rem;
-          border-right: 1px $main-color solid;
-        }
-        &:nth-of-type(2) {
-          width: 62%;
-          flex-grow: 1;
-          font-size: 2rem;
-          border-right: 1px $main-color solid;
-          padding: 0 1rem;
-        }
-        &:nth-of-type(3) {
-          width: 30%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 1rem;
-
-          h3 {
-            color: #f5c517;
+          img {
+            width: 100%;
+            border-radius: 5px;
           }
 
-          .circle {
-            width: 50px;
-            height: 50px;
-            background-color: $secondary-color;
+          span {
+            color: $secondary-color;
+            font-weight: bold;
+          }
+
+          &:nth-of-type(1) {
+            width: 8%;
+            padding: 1rem;
+            border-right: 1px $main-color solid;
+          }
+          &:nth-of-type(2) {
+            width: 62%;
+            flex-grow: 1;
+            font-size: 2rem;
+            border-right: 1px $main-color solid;
+            padding: 0 1rem;
+          }
+          &:nth-of-type(3) {
+            width: 30%;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            color: $nav-color;
-          }
-        }
+            gap: 1rem;
 
-        &:nth-of-type(4),
-        &:nth-of-type(5),
-        &:nth-of-type(6),
-        &:nth-of-type(7) {
-          opacity: 0;
-        }
+            h3 {
+              color: #f5c517;
+            }
 
-        &:nth-of-type(4) {
-          font-size: 1.5rem;
-          margin: 1.5rem 0;
-          width: 30%;
-        }
-        &:nth-of-type(5),
-        &:nth-of-type(6) {
-          font-size: 1.5rem;
-          width: 35%;
-        }
-        &:nth-of-type(6) {
-          span {
-            p {
-              display: inline-block;
+            .circle {
+              width: 50px;
+              height: 50px;
+              background-color: $secondary-color;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 50%;
+              font-size: 1.5rem;
+              color: $nav-color;
             }
           }
-        }
-        &:nth-of-type(7) {
-          width: 70%;
-          text-align: center;
-          font-size: 1.4rem;
-          margin-bottom: 2rem;
-        }
-      }
 
-      &:hover {
-        background-color: rgba(60, 72, 86, 0.5);
-      }
-
-      &.active {
-        background-color: #1b25344d;
-        max-height: 300px;
-
-        td {
           &:nth-of-type(4),
           &:nth-of-type(5),
           &:nth-of-type(6),
           &:nth-of-type(7) {
-            opacity: 1;
+            display: none;
+          }
+
+          &:nth-of-type(4) {
+            font-size: 1.5rem;
+            margin: 1.5rem 0;
+            width: 30%;
+          }
+          &:nth-of-type(5),
+          &:nth-of-type(6) {
+            font-size: 1.5rem;
+            width: 35%;
+          }
+          &:nth-of-type(6) {
+            span {
+              p {
+                display: inline-block;
+              }
+            }
+          }
+          &:nth-of-type(7) {
+            width: 70%;
+            text-align: center;
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+          }
+        }
+
+        &:hover {
+          background-color: rgba(60, 72, 86, 0.5);
+        }
+
+        &.active {
+          background-color: #1b25344d;
+          max-height: 300px;
+
+          td {
+            &:nth-of-type(4),
+            &:nth-of-type(5),
+            &:nth-of-type(6),
+            &:nth-of-type(7) {
+              opacity: 1;
+            }
           }
         }
       }

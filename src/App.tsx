@@ -1,12 +1,13 @@
 import axios from "axios";
-import "./styles/_main.scss";
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import "./styles/_main.scss";
 import Navbar from "./components/Navbar";
 import Breadcrumbs from "./components/Breadcrumbs";
 import Categories from "./pages/Categories";
-import { Route, Routes } from "react-router-dom";
-import Top100 from "./pages/Top100";
-import Genre from "./components/Genre";
+import Genre from "./pages/Genre";
+import Home from "./pages/Home";
+import Details from "./pages/Details";
 
 type Movies = Movie[];
 type Movie = {
@@ -29,6 +30,7 @@ function App() {
   const [movies, setMovies] = useState<Movies | null>(null);
   const [categoryList, setCategoryList] = useState<string[] | null>(null);
   const [lastClickedRow, setLastClickedRow] = useState<string | null>(null);
+  const [clickedMovie, setClickedMovie] = useState<Movie | null>(null);
 
   //fetching data on app initialization
   useEffect(() => {
@@ -58,19 +60,14 @@ function App() {
   };
 
   //logic which is checking if table row is clicked
-  function handleTrClick(
-    movieId: string,
-    url?: string,
-    e?: React.MouseEvent<Element>,
-  ) {
-    if (lastClickedRow === movieId) {
+  function handleTrClick(movieObj: Movie) {
+    if (lastClickedRow === movieObj.id) {
       setLastClickedRow(null);
     } else {
-      setLastClickedRow(movieId);
+      setLastClickedRow(movieObj.id);
     }
 
-    e?.preventDefault();
-    window.history.pushState(null, "", url);
+    setClickedMovie(movieObj);
   }
 
   return (
@@ -78,27 +75,24 @@ function App() {
       <Navbar />
       <Breadcrumbs />
       <Routes>
-        <Route path='/' element={<Categories categoryList={categoryList} />} />
-        <Route
-          path='/top100'
-          element={
-            <Top100
-              movies={movies}
-              handleTrClick={handleTrClick}
-              lastClickedRow={lastClickedRow}
-            />
-          }
-        />
-        <Route
-          path='/:id'
-          element={
-            <Genre
-              movies={movies}
-              handleTrClick={handleTrClick}
-              lastClickedRow={lastClickedRow}
-            />
-          }
-        />
+        <Route path='/'>
+          <Route index element={<Home />} />
+        </Route>
+        <Route path='/categories'>
+          <Route index element={<Categories categoryList={categoryList} />} />
+          <Route
+            path=':id'
+            element={
+              <Genre
+                movies={movies}
+                handleTrClick={handleTrClick}
+                lastClickedRow={lastClickedRow}
+                clickedMovie={clickedMovie}
+              />
+            }>
+            <Route path='*' element={<Details />} />
+          </Route>
+        </Route>
       </Routes>
     </>
   );

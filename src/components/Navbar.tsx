@@ -5,11 +5,11 @@ function Navbar() {
     <>
       <nav className='nav'>
         <div className='nav__wrapper container'>
-          <div className='nav__logo'>
+          <Link to={"/"} className='nav__logo'>
             <h2>
               MovieD<span className='nav__logo-dot'>.</span>
             </h2>
-          </div>
+          </Link>
           <div className='nav__searchbar'>
             <input
               className='nav__searchbar-input'
@@ -17,14 +17,6 @@ function Navbar() {
               type='text'
             />
           </div>
-          <ul className='nav__links'>
-            <li>
-              <Link to='/'>Categories</Link>
-            </li>
-            <li>
-              <Link to='/Top100'>Top100</Link>
-            </li>
-          </ul>
         </div>
       </nav>
     </>

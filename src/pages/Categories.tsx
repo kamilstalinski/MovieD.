@@ -9,7 +9,7 @@ function Categories({ categoryList }: CategoriesProps) {
     <div className='categories container'>
       {categoryList?.map((genre) => {
         return (
-          <Link key={Math.random()} to={`/${genre}`}>
+          <Link key={Math.random()} to={`/categories/${genre}`}>
             {genre}
           </Link>
         );

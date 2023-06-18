@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import MovieTableData from "../components/MovieTableData";
 import { useState, useEffect } from "react";
 
@@ -21,10 +21,16 @@ type Movie = {
 type GenreProps = {
   movies: Movie[] | null;
   lastClickedRow: string | null;
-  handleTrClick: (movieId: string) => void;
+  handleTrClick: (movieObj: Movie) => void;
+  clickedMovie: Movie | null;
 };
 
-function Genre({ movies, lastClickedRow, handleTrClick }: GenreProps) {
+function Genre({
+  movies,
+  lastClickedRow,
+  handleTrClick,
+  clickedMovie,
+}: GenreProps) {
   const { id } = useParams<{ id: string }>();
   const [filteredMovies, setFilteredMovies] = useState<Movie[] | null>(null);
 
@@ -39,8 +45,8 @@ function Genre({ movies, lastClickedRow, handleTrClick }: GenreProps) {
 
   return (
     <div className='genre-movies'>
+      <h1 className=''>{id}</h1>
       <main className='container'>
-        <h1 className=''>{id}</h1>
         <div className='table'>
           <table>
             <tbody>
@@ -51,12 +57,14 @@ function Genre({ movies, lastClickedRow, handleTrClick }: GenreProps) {
                     movie={movie}
                     handleTrClick={handleTrClick}
                     isClicked={lastClickedRow === movie.id}
+                    clickedMovie={clickedMovie}
                   />
                 );
               })}
             </tbody>
           </table>
         </div>
+        <Outlet />
       </main>
     </div>
   );
