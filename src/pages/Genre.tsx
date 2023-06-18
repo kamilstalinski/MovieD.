@@ -45,7 +45,7 @@ function Genre({
 
   return (
     <div className='genre-movies'>
-      <h1 className=''>{id}</h1>
+      <h1 className='container'>{id}</h1>
       <main className='container'>
         <div className='table'>
           <table>
@@ -64,7 +64,7 @@ function Genre({
             </tbody>
           </table>
         </div>
-        <Outlet />
+        <Outlet context={{ clickedMovie }} />
       </main>
     </div>
   );

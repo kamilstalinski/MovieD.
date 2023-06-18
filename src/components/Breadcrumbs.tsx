@@ -2,6 +2,7 @@ import { useLocation, Link } from "react-router-dom";
 
 function Breadcrumbs() {
   const location = useLocation();
+  console.log(location);
 
   let currentLink = "";
 
@@ -13,12 +14,14 @@ function Breadcrumbs() {
 
       return (
         <div className='crumb' key={crumb}>
-          <Link to={currentLink}>{crumb}</Link>
+          <Link to={currentLink}>
+            {crumb.includes("%20") ? crumb.replace(/%20/g, " ") : crumb}
+          </Link>
         </div>
       );
     });
 
-  return <div className='breadcrumbs'>{crumbs}</div>;
+  return <div className='container breadcrumbs'>{crumbs}</div>;
 }
 
 export default Breadcrumbs;
