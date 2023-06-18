@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <>
@@ -16,8 +18,12 @@ function Navbar() {
             />
           </div>
           <ul className='nav__links'>
-            <li>Categories</li>
-            <li>Top 100</li>
+            <li>
+              <Link to='/'>Categories</Link>
+            </li>
+            <li>
+              <Link to='/Top100'>Top100</Link>
+            </li>
           </ul>
         </div>
       </nav>

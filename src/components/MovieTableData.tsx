@@ -42,7 +42,11 @@ function Movie({ movie, handleTrClick, isClicked }: MovieProps) {
           Genre:{" "}
           <span className='green'>
             {movie.genre.map((genre) => {
-              return <p className='inline'>{genre}</p>;
+              return (
+                <p key={Math.random()} className='inline'>
+                  {genre + " "}
+                </p>
+              );
             })}
           </span>
         </td>
