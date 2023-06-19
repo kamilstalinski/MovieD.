@@ -2,7 +2,6 @@ import { useLocation, Link } from "react-router-dom";
 
 function Breadcrumbs() {
   const location = useLocation();
-  console.log(location);
 
   let currentLink = "";
 

@@ -19,19 +19,28 @@ type Movie = {
 type MovieProps = {
   movie: Movie;
   handleTrClick: (movieObj: Movie) => void;
+  handleActiveClick: () => void;
   isClicked: boolean;
   clickedMovie: Movie | null;
 };
 
-function Movie({ movie, handleTrClick, isClicked }: MovieProps) {
+function Movie({
+  movie,
+  handleTrClick,
+  isClicked,
+  handleActiveClick,
+}: MovieProps) {
   return (
     <>
       <Link to={movie.title}>
         <tr
-          onClick={() => handleTrClick(movie)}
+          onClick={() => {
+            handleTrClick(movie);
+            handleActiveClick();
+          }}
           className={`tablerow ${isClicked ? "active" : ""}`}>
           <td>
-            <img src={movie.image} alt={movie.title} />
+            <img src={movie.thumbnail} alt={movie.title} />
           </td>
           <td>{movie.title}</td>
           <td>

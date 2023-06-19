@@ -1,4 +1,3 @@
-import Iframe from "react-iframe";
 import { useOutletContext } from "react-router-dom";
 
 type Movie = {
@@ -30,6 +29,7 @@ function Details() {
       </div>
       <div className='details__lower'>
         <div className='details__lower-poster'>
+          <div className='rating'>{movie?.rating}</div>
           <img src={movie?.image} alt={movie?.title} />
         </div>
         {clickedMovie && (

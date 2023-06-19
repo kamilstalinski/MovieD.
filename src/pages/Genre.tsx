@@ -33,6 +33,7 @@ function Genre({
 }: GenreProps) {
   const { id } = useParams<{ id: string }>();
   const [filteredMovies, setFilteredMovies] = useState<Movie[] | null>(null);
+  const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
     if (movies) {
@@ -43,11 +44,15 @@ function Genre({
     }
   }, [id, movies]);
 
+  function handleActiveClick() {
+    setIsActive(!isActive);
+  }
+
   return (
     <div className='genre-movies'>
       <h1 className='container'>{id}</h1>
       <main className='container'>
-        <div className='table'>
+        <div className={`table ${isActive ? "active" : ""}`}>
           <table>
             <tbody>
               {filteredMovies?.map((movie) => {
@@ -56,6 +61,7 @@ function Genre({
                     key={movie.id}
                     movie={movie}
                     handleTrClick={handleTrClick}
+                    handleActiveClick={handleActiveClick}
                     isClicked={lastClickedRow === movie.id}
                     clickedMovie={clickedMovie}
                   />
@@ -63,6 +69,13 @@ function Genre({
               })}
             </tbody>
           </table>
+        </div>
+        <div className='table-button' onClick={() => handleActiveClick()}>
+          <div className={`hamburger ${isActive ? "active" : ""}`}>
+            <span className='line'></span>
+            <span className='line'></span>
+            <span className='line'></span>
+          </div>
         </div>
         <Outlet context={{ clickedMovie }} />
       </main>
