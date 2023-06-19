@@ -22,7 +22,9 @@ type GenreProps = {
   movies: Movie[] | null;
   lastClickedRow: string | null;
   handleTrClick: (movieObj: Movie) => void;
+  handleActiveClick: () => void;
   clickedMovie: Movie | null;
+  isActive: boolean;
 };
 
 function Genre({
@@ -30,10 +32,11 @@ function Genre({
   lastClickedRow,
   handleTrClick,
   clickedMovie,
+  handleActiveClick,
+  isActive,
 }: GenreProps) {
   const { id } = useParams<{ id: string }>();
   const [filteredMovies, setFilteredMovies] = useState<Movie[] | null>(null);
-  const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
     if (movies) {
@@ -43,10 +46,6 @@ function Genre({
       setFilteredMovies(filtered);
     }
   }, [id, movies]);
-
-  function handleActiveClick() {
-    setIsActive(!isActive);
-  }
 
   return (
     <div className='genre-movies'>

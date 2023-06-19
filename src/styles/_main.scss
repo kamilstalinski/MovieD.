@@ -335,6 +335,10 @@ main {
       img {
         width: 200px;
       }
+
+      .rating {
+        display: none;
+      }
     }
 
     &-spec {
@@ -384,6 +388,9 @@ main {
       .details__lower-poster {
         position: relative;
         .rating {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: absolute;
           top: 2%;
           right: 2%;
@@ -391,9 +398,6 @@ main {
           height: 40px;
           border-radius: 50%;
           background-color: #f5c517;
-          display: flex;
-          justify-content: center;
-          align-items: center;
           color: $nav-color;
           font-weight: bold;
           font-size: 1.3rem;
@@ -534,7 +538,7 @@ main {
 }
 
 .genre-movies {
-  position: relative;
+  // position: relative;
 
   h1 {
     text-align: start;

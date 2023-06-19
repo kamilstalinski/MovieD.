@@ -45,7 +45,7 @@ function Movie({
           <td>{movie.title}</td>
           <td>
             <h3>IMDb rating:</h3>
-            <div className='circle'>{movie.rating}</div>
+            {isClicked && <div className='circle'>{movie.rating}</div>}
           </td>
         </tr>
       </Link>

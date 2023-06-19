@@ -31,6 +31,7 @@ function App() {
   const [categoryList, setCategoryList] = useState<string[] | null>(null);
   const [lastClickedRow, setLastClickedRow] = useState<string | null>(null);
   const [clickedMovie, setClickedMovie] = useState<Movie | null>(null);
+  const [isActive, setIsActive] = useState(true);
 
   //fetching data on app initialization
   useEffect(() => {
@@ -39,17 +40,17 @@ function App() {
 
   //logic for fetching data using axios
   const fetchData = async (): Promise<void> => {
-    const options = {
-      method: "GET",
-      url: "https://imdb-top-100-movies.p.rapidapi.com/",
-      headers: {
-        "X-RapidAPI-Key": "a8ae1df93cmsh2dcb6a71acf7786p1c6986jsne2f14121de95",
-        "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
-      },
-    };
+    // const options = {
+    //   method: "GET",
+    //   url: "https://imdb-top-100-movies.p.rapidapi.com/",
+    //   headers: {
+    //     "X-RapidAPI-Key": "a8ae1df93cmsh2dcb6a71acf7786p1c6986jsne2f14121de95",
+    //     "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
+    //   },
+    // };
 
     try {
-      const response = await axios.request(options);
+      const response = await axios.get("/data.json");
       const data: Movies = response.data;
       setMovies(data);
 
@@ -79,10 +80,14 @@ function App() {
     setClickedMovie(movieObj);
   }
 
+  function handleActiveClick() {
+    setIsActive(!isActive);
+  }
+
   return (
     <>
       <Navbar />
-      <Breadcrumbs />
+      <Breadcrumbs handleActiveClick={handleActiveClick} isActive={isActive} />
       <Routes>
         <Route path='/'>
           <Route index element={<Home />} />
@@ -95,8 +100,10 @@ function App() {
               <Genre
                 movies={movies}
                 handleTrClick={handleTrClick}
+                handleActiveClick={handleActiveClick}
                 lastClickedRow={lastClickedRow}
                 clickedMovie={clickedMovie}
+                isActive={isActive}
               />
             }>
             <Route path='*' element={<Details />} />

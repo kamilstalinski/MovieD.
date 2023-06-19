@@ -1,6 +1,11 @@
 import { useLocation, Link } from "react-router-dom";
 
-function Breadcrumbs() {
+type BreadcrumbsProps = {
+  handleActiveClick: () => void;
+  isActive: boolean;
+};
+
+function Breadcrumbs({ handleActiveClick, isActive }: BreadcrumbsProps) {
   const location = useLocation();
 
   let currentLink = "";
@@ -13,7 +18,11 @@ function Breadcrumbs() {
 
       return (
         <div className='crumb' key={crumb}>
-          <Link to={currentLink}>
+          <Link
+            to={currentLink}
+            onClick={() => {
+              isActive ? null : handleActiveClick();
+            }}>
             {crumb.includes("%20") ? crumb.replace(/%20/g, " ") : crumb}
           </Link>
         </div>

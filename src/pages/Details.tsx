@@ -35,7 +35,7 @@ function Details() {
         {clickedMovie && (
           <div className='details__lower-spec'>
             <h2>
-              Director: <span>{movie?.director}</span>
+              Director: <span>{movie?.director.join(", ")}</span>
             </h2>
             <h3>
               Year: <span>{movie?.year}</span>
