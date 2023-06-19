@@ -40,17 +40,17 @@ function App() {
 
   //logic for fetching data using axios
   const fetchData = async (): Promise<void> => {
-    // const options = {
-    //   method: "GET",
-    //   url: "https://imdb-top-100-movies.p.rapidapi.com/",
-    //   headers: {
-    //     "X-RapidAPI-Key": "a8ae1df93cmsh2dcb6a71acf7786p1c6986jsne2f14121de95",
-    //     "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
-    //   },
-    // };
+    const options = {
+      method: "GET",
+      url: "https://imdb-top-100-movies.p.rapidapi.com/",
+      headers: {
+        "X-RapidAPI-Key": "a8ae1df93cmsh2dcb6a71acf7786p1c6986jsne2f14121de95",
+        "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
+      },
+    };
 
     try {
-      const response = await axios.get("/data.json");
+      const response = await axios.request(options);
       const data: Movies = response.data;
       setMovies(data);
 

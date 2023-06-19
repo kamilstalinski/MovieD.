@@ -38,6 +38,7 @@ function Genre({
   const { id } = useParams<{ id: string }>();
   const [filteredMovies, setFilteredMovies] = useState<Movie[] | null>(null);
 
+  //filtering data by clicked genre
   useEffect(() => {
     if (movies) {
       const filtered = movies.filter((movie) =>
